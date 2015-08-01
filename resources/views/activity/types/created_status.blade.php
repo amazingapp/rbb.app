@@ -1,0 +1,1 @@
+{{$event->user->name}} wrote a status {{$event->created_at->diffForHumans()}}

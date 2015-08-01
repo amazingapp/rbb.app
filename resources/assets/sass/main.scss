@@ -1,0 +1,20 @@
+@import 'partials/status';
+@import 'partials/button';
+@import 'partials/nav';
+@import 'partials/dashboard';
+@import 'pages/users';
+body {
+  background-color: rgb(240, 240, 240);
+  font-family: 'Roboto', sans-serif;
+}
+
+.container h1:first-of-type {
+  margin-top: 0;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 1em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #ddd;
+}
