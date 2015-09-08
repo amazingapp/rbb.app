@@ -8,8 +8,7 @@
           <div class="col-md-6">
               @include('posts.partials.publish-post-form')
               @include('posts.partials.posts')
-
-              {!! with(new Banijya\Paginator\SimplePaginator($feeds) )->render() !!}
+              @include('layouts.partials.simple-pagination', array('paginate' => $feeds));
           </div>
         </div>
     </div>

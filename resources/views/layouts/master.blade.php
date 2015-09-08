@@ -121,6 +121,7 @@
 @yield('footer')
 	<!-- Scripts -->
 <script src="{{elixir('js/all.js')}}"></script>
+<script src="/js/vue.min.js"></script>
 @yield('scripts')
 </body>
 </html>

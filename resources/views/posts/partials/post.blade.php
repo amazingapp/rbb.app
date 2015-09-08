@@ -16,11 +16,11 @@
     </div>
 
     @if( $signedIn)
-        <form action="{{route('posts.comments', $post->id)}}" class="form-comment" >
+        <form action="{{route('posts.comments', $post->id)}}#post-{{$post->id}}" method="POST" class="form-comment" >
         <input type="hidden" name="post_id" value="{{$post->id}}">
         @if( $post->commentsCount )
             <p class="text-primary" style="padding: 7px 0px 0px 0px;margin: 0;">
-                <a href="{{route('user.post',[$post->owner->employee_id, $post->id])}}" > View All Comments </a>
+                <a href="{{route('users.posts',[$post->owner->employee_id, $post->id])}}" > View All Comments </a>
             </p>
         @endif
         <div class="input-group post__comment" style="padding-top: 10px;">

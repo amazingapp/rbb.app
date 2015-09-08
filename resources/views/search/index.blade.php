@@ -23,16 +23,15 @@
                                 </a>
                               </div>
                               <div class="media-body">
-                                <h4 class="media-heading">{{$friend->name}}</h4>
+                                <h4 class="media-heading">
+                                  <a href="{{route('user.profile', [$friend->employee_id])}}">{{$friend->name}}</a>
+                                </h4>
                                 <p class="text">
                                    <span class="glyphicon glyphicon-briefcase" arial-hidden="true"></span>
                                    {{$friend->designation}} at {{$friend->current_branch}}
                                 </p>
                                 <p class="text">
-                                    <form class="friends_requests" action="{{route('friends.send_request', [$friend->id])}}" method="POST">
-                                        {{csrf_field()}}
-                                        <button type="submit" class="btn btn-primary btn-sm">Send Request</button>
-                                    </form>
+                                   @include('friends.partials.friendship-status',['user'=> $friend])
                                 </p>
                               </div>
                             </div>

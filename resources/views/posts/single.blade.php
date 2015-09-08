@@ -23,17 +23,17 @@
                     </div>
 
                     @if( $signedIn)
-                        {!! Form::open(['route' => ['post.comments', $post->id], 'class' => 'form-comment']) !!}
-                        {!! Form::hidden('post_id', $post->id) !!}
+                        <form action="{{route('posts.comments', [$post->id])}}" method="POST" class="form-comment">
+                        <input type="hidden" value="{{$post->id}}" name="post_id">
                         <small class="text-muted comment-helper">Hit Ctrl + Enter to leave a comment</small>
                         <div class="input-group post__comment" style="padding-top: 22px;">
 
                             <span class="input-group-addon" style="border:none;padding:0px;position:relative;">
                               <img src="/images/avatar_small.jpg" alt="Placeholder" style="width:33px;height:33px;" />
                             </span>
-                            {!!Form::textarea('body', null, ['class'=>'form-control comment' ,'aria-describedby'=>"sizing-addon2", 'placeholder' => 'Write a comment..' , 'rows' => 1]) !!}
+                            <textarea class="form-control comment" aria-describedby="sizing-addon2" placeholder="Write a comment .." rows="1"></textarea>
                         </div>
-                        {!! Form::close() !!}
+                        </form>
                     @endif
                 </article>
 
@@ -43,7 +43,7 @@
                     @endforeach
 					<article class="post-media">
                     	    <div class="media-body">
-								{!! $comments->render() !!}
+								@include('layouts.partials.simple-pagination', array('paginate' => $comments));
 						    </div>
                     </article>
                 @endif
