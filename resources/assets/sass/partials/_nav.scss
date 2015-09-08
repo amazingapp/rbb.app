@@ -1,3 +1,12 @@
+#wrapper{
+  min-height:100%;
+}
+
+.main{
+  overflow:hidden;
+  padding-bottom:30px;
+}
+
 .navbar-default {
   background-color: #00BAE9;
   border-color: #f3f3f3;
@@ -27,8 +36,26 @@
   left: -10px;
   border: 1px solid rgb(238, 238, 238);
 }
+.splash{
+  background-color:white;
+
+}
 
 footer{
-  bottom: 0px;
-  position: inherit;
+    border-top: 1px solid #eee;
+    min-height: 100px;
+    color: #8e8e8e;
+    background: #fff;
+    padding-top: 65px;
+    letter-spacing: -.2px;
+      ul {
+          list-style: none;
+      }
+   .footer__bottom{
+       border-top: 1px solid #ddd;
+       margin-top: 40px;
+       padding-top: 40px;
+       color: #CCC;
+       font-size: 1.1em;
+   }
 }

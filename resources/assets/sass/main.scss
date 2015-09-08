@@ -1,7 +1,10 @@
-@import 'partials/status';
+@import 'bootstrap';
+@import 'partials/post';
 @import 'partials/button';
 @import 'partials/nav';
 @import 'partials/dashboard';
+@import 'partials/profile';
+@import 'partials/requests';
 @import 'pages/users';
 body {
   background-color: rgb(240, 240, 240);
