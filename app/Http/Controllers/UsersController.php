@@ -12,8 +12,10 @@ class UsersController extends Controller
 {
     public function show($employeeId)
     {
-        $user = User::with('posts')->where('employee_id',$employeeId)->firstOrFail();
+        $user = User::where('employee_id',$employeeId)->firstOrFail();
 
-        return view('posts.profile')->with(compact('user'));
+        $posts = $user->posts()->simplePaginate(4);
+
+        return view('posts.profile')->with(compact('user', 'posts'));
     }
 }

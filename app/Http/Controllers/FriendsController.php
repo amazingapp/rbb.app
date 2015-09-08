@@ -78,11 +78,11 @@ class FriendsController extends Controller
         {
             return redirect()
                         ->route('home')
-                        ->withInfoMessage('Friend Request already pending.');
+                        ->withSuccessMessage('Friend Request already pending.');
         }
 
         $auth->user()->addFriend($user);
 
-        return back()->withInfoMessage('Friend request sent.');
+        return back()->withSuccessMessage("Friend request sent to {$user->name}");
     }
 }
