@@ -6,3 +6,8 @@ Homestead.yaml
 rbb-social-app.sublime-project
 rbb-social-app.sublime-workspace
 *.sublime-settings
+/public/build/css/*.css.map
+/public/build/js/*.js.map
+/public/css/*.css.map
+/public/js/*.js.map
+
