@@ -31,4 +31,15 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
+
+    /**
+     * Save a comment to a post
+     * @param   $post
+     * @return  ret
+     */
+    public function attachTo($object)
+    {
+        $object->comments()->save($this);
+        return $this;
+    }
 }

@@ -84,7 +84,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany(User::class, 'friends',
              'user_id',
              'friend_id'
-            );
+            )->withTimestamps();
     }
 
     /**
@@ -96,7 +96,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany(User::class,
                 'friends',
                 'friend_id',
-                'user_id');
+                'user_id')->withTimestamps();
     }
 
     /**
@@ -130,6 +130,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return (bool) $this
                     ->friendRequestsPending()
+                    ->get()
                     ->where('id', $user->id)->count();
     }
 
