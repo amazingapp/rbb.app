@@ -1,0 +1,116 @@
+// Each individual post
+.post-media {
+  border: 1px solid #E3E3E3;
+  border-bottom: none;
+  background: white;
+  padding: 1em;
+  overflow: auto;
+  .single-post-title{
+    font-size: 18px;
+  }
+  .single-post-body{
+    font-size: 20px;
+    text-align: justify;
+  }
+}
+
+.post-media-heading {
+  color: rgb(64, 157, 209);
+  position: relative;
+  top: 5px;
+}
+
+.post-media-body {
+  color: #B3BAC0;
+  font-size: 1.2em;
+  padding: .5em 1em 1em 1em;
+}
+
+.post-media-object {
+  position: relative;
+  top: 13px;
+  left: 10px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+.post-media-time {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 0.15em;
+  color: rgb(204, 208, 211);
+}
+
+
+// The form to publish a new post.
+.post-post {
+  background: white;
+  margin-bottom: 3em;
+  padding: 0;
+  border-radius: 5px;
+  textarea {
+    resize: none;
+    border: none;
+    overflow: auto;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .post-post-submit {
+    border-top: 1px solid #E9E9E9;
+    padding: .5em 1em;
+    margin-bottom: 0;
+    overflow: hidden;
+    background: #FDFCFC;
+
+    .btn {
+      float: right;
+      background: rgb(46, 177, 228);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: helvetica;
+
+      &:hover {
+        background: rgb(39, 144, 177);
+      }
+    }
+  }
+}
+.post__comment{
+  .comment{
+      resize: none;
+      border: none;
+      overflow: auto;
+      margin-left: 10px;
+      border: 1px solid #e3e3e3;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      box-shadow:none;
+      width: 95%;
+      &:focus {
+        box-shadow: none;
+      }
+  }
+}
+.ajaxify__comments
+{
+    height: 10px;
+    margin-bottom: 4px;
+}
+
+.create-post{
+  overflow:hidden!important;
+  padding-top: 20px;
+  display: block;
+}
+.media-body{
+  .time{
+    padding-left: 10px;
+    float: left;
+    position: inherit;
+  }
+}
+.comment-helper{
+  float: left;position: absolute;left: 75px;
+}
