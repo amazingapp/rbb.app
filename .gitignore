@@ -5,3 +5,4 @@ Homestead.yaml
 /.idea
 rbb-social-app.sublime-project
 rbb-social-app.sublime-workspace
+*.sublime-settings
