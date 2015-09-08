@@ -9,6 +9,9 @@ Route::post('friends/{id}/send_request', ['as' => 'friends.send_request', 'uses'
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 Route::get('@{employeeid}',['as'=>'user.profile', 'uses' => 'UsersController@show']);
 
+Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']); // leave a comment on a posts
+Route::get('@{employeeid}/posts/{postid}', ['as' => 'users.posts', 'uses' => 'PostsController@show']);
+
 Route::get('login',['as'=>'login', 'uses' => 'SessionsController@create']);
 Route::post('login',['as'=>'login', 'uses' => 'SessionsController@store']);
 Route::get('logout',['as'=>'logout', 'uses' => 'SessionsController@destroy']);
@@ -34,7 +37,7 @@ Route::get('settings/privacy', ['as' => 'user.privacy', 'uses' => 'SettingsContr
 Route::post('posts/create',['as' => 'posts.create', 'uses' => 'PostsController@create']); //create a posts
 Route::post('posts/{id}/update',['as' => 'posts.update', 'uses' => 'PostsController@update']); //update a posts
 Route::get('posts/{id}/delete',['as'=>'posts.delete', 'uses' => 'PostsController@delete']); //delete a posts
-Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']); // leave a comment on a posts
+
 Route::delete('posts/{postsid}/comments/{commentid}/delete',['as' => 'posts.comments.delete', 'uses' => 'CommentsController@delete']); // delete a comment from a posts
 
 Route::group(['name' => 'backend'], function(){
