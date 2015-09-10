@@ -11,6 +11,6 @@ elixir(function(mix) {
             'app.js'
         ])
       .sass("main.scss", 'public/css/', {includePaths: [paths.bootstrap + 'stylesheets/']})
-      .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
+      .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap/')
       .version(['public/js/all.js', 'public/css/main.css']);
 });
