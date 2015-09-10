@@ -2,7 +2,7 @@
   <div class="media-left">
        <a href="{{route('user.profile', [$user->employee_id])}}" title="{!! $user->name !!}" tabindex="-1" aria-hidden="true">
             <img class="aavatar"
-                src="https://pbs.twimg.com/profile_images/3038487941/c88a127241c6b5107417c153a15bdc25_bigger.jpeg"
+                src="/{!! $user->aavatar->thumbnail_path !!}"
                  alt="{!! $user->name !!}">
           </a>
   </div>

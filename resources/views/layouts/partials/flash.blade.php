@@ -1,10 +1,17 @@
-@if(Session::has('success_message'))
+@if(session()->has('success_message'))
     <div class="alert alert-success">
-        {{Session::get('success_message')}}
+        {{session('success_message')}}
     </div>
 @endif
-@if(Session::has('error_message'))
+
+@if(session()->has('info_message'))
+    <div class="alert info-success">
+        {{session('success_message')}}
+    </div>
+@endif
+
+@if(session()->has('error_message'))
     <div class="alert alert-danger">
-        {{Session::get('error_message')}}
+        {{session('error_message')}}
     </div>
 @endif
