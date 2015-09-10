@@ -20,7 +20,7 @@ class SessionsController extends Controller
      */
     public function store(Guard $auth, Request $input)
     {
-        if( $auth->attempt($input->only('employee_id', 'password'), $input->get('remember', false)) )
+        if( $auth->attempt( $input->only('employee_id', 'password'), $input->get('remember') ) )
         {
             return redirect()->intended('home');
         }
