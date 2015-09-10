@@ -57,6 +57,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * User have an Aavatar
+     * @return HasMany
+     */
+    public function aavatar()
+    {
+        return $this->hasOne(Aavatar::class, 'user_id');
+    }
+    /**
      * Get the activity timeline for the user
      */
     public function activity()
