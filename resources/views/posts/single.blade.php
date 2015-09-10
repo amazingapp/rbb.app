@@ -7,7 +7,7 @@
             <div class="post-container">
                 <article class="media post-media">
                     <div class="pull-left">
-                        <img src="/images/avatar_small.jpg" alt="Placeholder" style="width:50px;height:50px;" />
+                        <img src="/{{ $post->owner->aavatar->thumbnail_path}}" alt="Placeholder" style="width:50px;height:50px;" />
                     </div>
                     <div class="media-body post-media-tooltip">
                    <span class="text single-post-title">
@@ -29,9 +29,9 @@
                         <div class="input-group post__comment" style="padding-top: 22px;">
 
                             <span class="input-group-addon" style="border:none;padding:0px;position:relative;">
-                              <img src="/images/avatar_small.jpg" alt="Placeholder" style="width:33px;height:33px;" />
+                              <img src="/{{$authAavatar->icon_path}}" alt="Placeholder" style="width:33px;height:33px;" />
                             </span>
-                            <textarea class="form-control comment" aria-describedby="sizing-addon2" placeholder="Write a comment .." rows="1"></textarea>
+                            <textarea name="body" class="form-control comment" aria-describedby="sizing-addon2" placeholder="Write a comment .." rows="1"></textarea>
                         </div>
                         </form>
                     @endif
@@ -43,7 +43,7 @@
                     @endforeach
 					<article class="post-media">
                     	    <div class="media-body">
-								@include('layouts.partials.simple-pagination', array('paginate' => $comments));
+								@include('layouts.partials.simple-pagination', array('paginate' => $comments))
 						    </div>
                     </article>
                 @endif

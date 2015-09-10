@@ -1,6 +1,6 @@
 <article class="comment__comment post-media">
     <div class="pull-left">
-        <img src="/images/avatar_small.jpg" alt="Placeholder" style="height:33px;width:33px;" />
+        <img src="/{{ $comment->owner->aavatar->icon_path}}" alt="Placeholder" style="height:33px;width:33px;" />
     </div>
     <div class="media-body">
         <p class="text" style="padding-left: 10px;text-align: justify;">

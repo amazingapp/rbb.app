@@ -1,6 +1,6 @@
 <article class="media post-media" id="post-{{$post->id}}">
     <div class="pull-left">
-        <img src="/images/avatar_small.jpg" alt="Placeholder" style="width:50px;height:50px;" />
+        <img src="/{{$post->owner->aavatar->icon_path}}" alt="{{ $post->owner->aavatar->name }}" style="width:43px;height:43px;" />
     </div>
     <div class="media-body post-media-tooltip">
                    <span class="text">
@@ -25,7 +25,7 @@
         @endif
         <div class="input-group post__comment" style="padding-top: 10px;">
             <span class="input-group-addon" style="border:none;padding:0px;position:relative;">
-              <img src="/images/avatar_small.jpg" alt="Placeholder" style="height:33px;width:33px" />
+              <img src="/{{ $authAavatar->icon_path }}" alt="Placeholder" style="height:33px;width:33px" />
             </span>
             <div class="form-group">
                 <textarea placeholder='Write a comment..'

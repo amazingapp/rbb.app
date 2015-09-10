@@ -3,12 +3,12 @@
     <div class="row">
         <div class="col-md-5 col-md-offset-3" style="padding-top: 60px;">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body login">
                     @include('layouts.partials.flash')
                     <form id="form" action="{{route('login')}}" method="POST">
                         {{csrf_field()}}
                     <div class="form-group">
-                            <label for="employee_id">User ID:</label>
+                            <label for="employee_id">User ID</label>
                             <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{Input::old('employee_id')}}" />
                         </div>
                     <div class="form-group">

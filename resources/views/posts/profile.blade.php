@@ -7,7 +7,7 @@
         <div class="col-md-6">
             @include('layouts.partials.flash')
             @include('posts.partials.posts', ['feeds' => $posts])
-            @include('layouts.partials.simple-pagination', array('paginate' => $posts));
+            @include('layouts.partials.simple-pagination', array('paginate' => $posts))
         </div>
 
         <div class="col-md-3">
