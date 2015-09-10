@@ -36,6 +36,8 @@
   left: -10px;
   border: 1px solid rgb(238, 238, 238);
 }
+
+
 .splash{
   background-color:white;
 
@@ -58,4 +60,25 @@ footer{
        color: #CCC;
        font-size: 1.1em;
    }
+}
+
+.user-nav{
+
+      li{
+          display: block;
+          clear: both;
+          margin-bottom: .7em;
+          padding: .5em 1em;
+      }
+
+    li.active, li:hover{
+      background: #fff;
+      width: 142px;
+    }
+}
+
+.settings{
+  background-color: #fff;
+  padding: 40px;
+  font-size: 1.1em;
 }
