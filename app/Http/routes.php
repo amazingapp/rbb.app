@@ -1,5 +1,9 @@
 <?php
 Route::get('/', [ 'as' => 'splash', 'uses' => 'HomeController@splash']);
+Route::get('login',['as'=>'login', 'uses' => 'SessionsController@create']);
+Route::post('login',['as'=>'login', 'uses' => 'SessionsController@store']);
+Route::get('logout',['as'=>'logout', 'uses' => 'SessionsController@destroy']);
+Route::get('home', ['middleware' => 'auth', 'as' => 'home', 'uses' => 'PostsController@index']);
 
 Route::get('friends/requests', ['as' => 'friends.request', 'uses' => 'FriendsController@index']);
 Route::post('friends/{id}/accept', [ 'as' => 'friends.accept', 'uses' => 'FriendsController@accept']);
@@ -9,13 +13,16 @@ Route::post('friends/{id}/send_request', ['as' => 'friends.send_request', 'uses'
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 Route::get('@{employeeid}',['as'=>'user.profile', 'uses' => 'UsersController@show']);
 
+Route::post('posts/create',['as' => 'posts.create', 'uses' => 'PostsController@create']); //create a posts
 Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']); // leave a comment on a posts
 Route::get('@{employeeid}/posts/{postid}', ['as' => 'users.posts', 'uses' => 'PostsController@show']);
 
-Route::get('login',['as'=>'login', 'uses' => 'SessionsController@create']);
-Route::post('login',['as'=>'login', 'uses' => 'SessionsController@store']);
-Route::get('logout',['as'=>'logout', 'uses' => 'SessionsController@destroy']);
-Route::get('home', ['as' => 'home', 'uses' => 'PostsController@index']);
+Route::get('settings/account', ['as'=>'settings.account', 'uses' => 'SettingsController@index']);
+Route::put('settings/profile', ['as' => 'settings.profile', 'uses' => 'SettingsController@updateProfile']);
+Route::put('settings/change_password', ['as' => 'settings.change_password', 'uses' => 'SettingsController@updatePassword']);
+Route::post('settings/aavatar', ['as' => 'settings.aavatar', 'uses' => 'SettingsController@updateAavatar']);
+
+
 
 /** User Activity */
 Route::get('users',['as'=>'users', 'uses' => 'UsersController@index']);
@@ -26,15 +33,15 @@ Route::get('@{employeeid}/posts/{postsid}', ['as' => 'user.posts' , 'uses' => 'U
 Route::get('notifications',['as'=>'notifications', 'uses' => 'NotificationsController@index']); // should show notification for a user, replies, mentions etc, anything that needs attention or anything that the user opted for in the settings //# get the notifications for authorized user, /notifications?tab=all,read,unread,archived=deleted
 Route::post('notifications/archive',['as'=>'notifications.delete', 'uses' => 'NotificationsController@archive']); #Notification that should be deleted /archive?mark=deleted/read/unread
 /** User Settings */
-Route::get('settings/profile', ['as'=>'user.editprofile', 'uses' => 'SettingsController@editprofile']);
-Route::get('settings/account', ['as' => 'user.account' , 'uses' => 'SettingsController@account']); // should show user account info
+// Route::get('settings/profile', ['as'=>'user.editprofile', 'uses' => 'SettingsController@editprofile']);
+// Route::get('settings/account', ['as' => 'user.account' , 'uses' => 'SettingsController@account']); // should show user account info
 Route::get('settings/password', ['as' => 'user.password', 'uses' => 'SettingsController@password']); // should show user password section
 Route::get('settings/mobile', ['as' => 'user.mobile' , 'uses' => 'SettingsController@mobile']); // should show user mobile section
 Route::get('settings/blocked', ['as' => 'user.blocked', 'uses' => 'SettingsController@blocked']); // should show user's blocked preference
 Route::get('settings/privacy', ['as' => 'user.privacy', 'uses' => 'SettingsController@privacy']); //// should show user privacy concerned with notification etc
 
 /** posts and Comments */
-Route::post('posts/create',['as' => 'posts.create', 'uses' => 'PostsController@create']); //create a posts
+
 Route::post('posts/{id}/update',['as' => 'posts.update', 'uses' => 'PostsController@update']); //update a posts
 Route::get('posts/{id}/delete',['as'=>'posts.delete', 'uses' => 'PostsController@delete']); //delete a posts
 
