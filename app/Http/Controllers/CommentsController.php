@@ -2,19 +2,21 @@
 
 namespace Banijya\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Banijya\Http\Requests;
 use Banijya\Http\Controllers\Controller;
-use Banijya\Post, Banijya\Comment, Input;
+use Banijya\Http\Requests;
+use Banijya\Http\Requests\CommentsRequest;
+use Banijya\Post, Banijya\Comment;
+use Illuminate\Http\Request;
 use URL, Auth;
 class CommentsController extends Controller
 {
-    public function store($postid)
+    public function store(CommentsRequest $request, $postid)
     {
         $post = Post::findOrFail($postid);
+
         $user = Auth::user();
-        $comment = Comment::create(Input::all())
+
+        $comment = Comment::create($request->all())
                         ->attachTo($post)
                         ->attachTo($user);
 

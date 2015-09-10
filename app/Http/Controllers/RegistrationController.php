@@ -37,7 +37,8 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // To Do
+        // when creating a user we also need to add a dummy aavatar by default
     }
 
     /**
