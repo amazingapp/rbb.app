@@ -12,13 +12,21 @@ abstract class Controller extends BaseController
 
     public function __construct()
     {
-        View::share('signedIn', Auth::user());
-        View::share('authUser', Auth::user() );
-        if(Auth::user()) $this->shareAavatar();
+        $user = Auth::user();
+        View::share('signedIn', $user);
+        View::share('authUser', $user );
+
+        $this->shareAavatar($user);
+        $this->shareFriendRequest($user);
     }
 
-    protected function shareAavatar()
+    protected function shareAavatar($user)
     {
-        View::share('authAavatar', Auth::user()->aavatar()->first() );
+        if($user) View::share('authAavatar', Auth::user()->aavatar()->first() );
+    }
+
+    public function shareFriendRequest($user)
+    {
+        if($user) View::share('friendRequests', $user->friendsRequests()->count());
     }
 }

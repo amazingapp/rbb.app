@@ -20,6 +20,6 @@ class CommentsController extends Controller
                         ->attachTo($post)
                         ->attachTo($user);
 
-        return redirect(URL::previous() . "#post-{$postid}"); //
+        return redirect(URL::previous() . "#post-{$comment->id}"); //
     }
 }

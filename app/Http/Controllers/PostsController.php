@@ -11,17 +11,6 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 class PostsController extends Controller
 {
-    /**
-     * Simple Paginate the home page
-     * @param    $auth
-     * @return
-     */
-    public function index( Guard $auth )
-    {
-        $feeds = $auth->user()->posts()->with('owner.aavatar')->latest()->simplePaginate();
-
-        return view('home.index', compact('feeds'));
-    }
 
     /**
      * Show a single post of a user with comments
@@ -32,7 +21,9 @@ class PostsController extends Controller
     public function show($employeeId, $postid)
     {
         $user = User::where('employee_id', $employeeId)->firstOrFail();
+
         $post = $user->posts()->with('owner.aavatar')->findOrFail($postid);
+
         $comments = $post->comments()->with('owner.aavatar')->latest()->simplePaginate();
 
         return view('posts.single', compact('post', 'user', 'comments'));

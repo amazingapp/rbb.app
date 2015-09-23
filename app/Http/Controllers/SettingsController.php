@@ -76,7 +76,9 @@ class SettingsController extends Controller
     {
         if( $aavatar = $user->aavatar()->first() )
         {
-            return $aavatar->saveAs($file->getClientOriginalName())->move($file);
+            return $aavatar->removeOldAavatar()
+                           ->saveAs($file->getClientOriginalName())
+                           ->move($file);
         }
 
         return Aavatar::named($file->getClientOriginalName())

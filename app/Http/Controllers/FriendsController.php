@@ -7,7 +7,7 @@ use Banijya\Http\Requests;
 use Banijya\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-
+use URL;
 
 class FriendsController extends Controller
 {
@@ -28,15 +28,14 @@ class FriendsController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        // Check if current user has received friend request from that user
         if( ! $auth->user()->hasFriendRequestReceived($user) )
+        {
             return back()->withErrorMessage('Sorry there was a problem accepting the request.');
+        }
 
-        // lets accept friend request
         $auth->user()->acceptFriendRequest($user);
 
-        //redirect back with success message
-        return back()->withSuccessMessage("You and {$user->name} are friends.");
+        return redirect(URL::previous() . "#friend-{$user->employee_id}")->withSuccessMessage("You and {$user->name} are friends.");
     }
 
     /**
@@ -54,7 +53,7 @@ class FriendsController extends Controller
 
         $auth->user()->deleteFriend($user);
 
-        return back()->withSuccessMessage("You and {$user->name} are no more friends.");
+        return back()->withSuccessMessage("You have declined friend request from {$user->name}.");
     }
 
 
@@ -83,6 +82,15 @@ class FriendsController extends Controller
 
         $auth->user()->addFriend($user);
 
-        return back()->withSuccessMessage("Friend request sent to {$user->name}");
+        return redirect(URL::previous() . "#friend-{$user->employee_id}")->withSuccessMessage("Friend request sent to {$user->name}");
+    }
+
+
+    public function all(Guard $auth)
+    {
+        $user = $auth->user();
+        $friends = $user->allFriends()->simplePaginate(18);
+
+        return view('friends.all', compact('friends', 'user'));
     }
 }

@@ -6,19 +6,12 @@ use Illuminate\Http\Request;
 
 use Banijya\Http\Requests;
 use Banijya\Http\Controllers\Controller;
+use Banijya\Http\Requests\RegisterRequest;
+use Auth;
+use Banijya\User;
 
 class RegistrationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +19,7 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        //
+        return view('registration.create')->withTitle(trans('common.title') ." | Register");
     }
 
     /**
@@ -35,44 +28,17 @@ class RegistrationController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        // To Do
+        $user = User::create($request->all());
+
+        $user->aavatar()->create([]); //just create a empty images so that all the default images are there
+
+        Auth::login($user);
+
+        return redirect('home')->withSuccessMessage('Thank you for signing up!');
+
         // when creating a user we also need to add a dummy aavatar by default
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

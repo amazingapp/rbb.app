@@ -14,7 +14,7 @@ class UsersController extends Controller
     {
         $user = User::where('employee_id',$employeeId)->firstOrFail();
 
-        $posts = $user->posts()->simplePaginate(4);
+        $posts = $user->posts()->latest()->simplePaginate();
 
         return view('posts.profile')->with(compact('user', 'posts'));
     }
