@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                         'name', 'email', 'password',
                         'employee_id', 'mobile',
                         'dob','designation','current_branch',
-                        'login_count'
+                        'login_count','remember_token'
                         ];
 
         /**
@@ -203,5 +203,29 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return (bool) $this->friends()
                         ->where('id', $user->id)
                         ->count();
+    }
+
+    /**
+     * Get all Friends of Mine
+     * @return Query
+     */
+    public function scopeAllFriends($query)
+    {
+        $user = $this;
+
+        return $query->join('friends', function ($join)
+        {
+            $join->on("users.id", '=', 'friends.user_id')
+            ->orOn('users.id', '=', 'friends.friend_id');
+        })
+        ->join('images', 'images.user_id','=','users.id')
+        ->where('friends.accepted',1)
+        ->where(function($query) use ($user){
+            $query
+            ->orWhere('friends.user_id', $this->id)
+            ->orWhere('friends.friend_id', $this->id);
+        })
+        ->where('users.id', '!=', $this->id)
+        ->select(['users.*', 'images.thumbnail_path','images.path as image_path']);
     }
 }
