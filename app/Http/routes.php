@@ -1,20 +1,44 @@
 <?php
-Route::get('/', [ 'as' => 'splash', 'uses' => 'HomeController@splash']);
+Route::get('checkout', function()
+{
+    return view('checkout');
+});
+Route::get('api/coupons/{code}', function($code)
+{
+    return response()->json([
+            'code' => 'CODE123',
+            'discount' => 40,
+            'description' => 'Cool, you got yourself a discount.'
+        ],200);
+});
+
+Route::get('/', ['middleware' => 'guest', 'as' => 'splash', 'uses' => 'HomeController@splash']);
+Route::get('home', ['middleware' => 'auth', 'as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('login',['as'=>'login', 'uses' => 'SessionsController@create']);
-Route::post('login',['as'=>'login', 'uses' => 'SessionsController@store']);
 Route::get('logout',['as'=>'logout', 'uses' => 'SessionsController@destroy']);
-Route::get('home', ['middleware' => 'auth', 'as' => 'home', 'uses' => 'PostsController@index']);
+Route::get('register', ['as' =>'register', 'uses' => 'RegistrationController@create']);
 
 Route::get('friends/requests', ['as' => 'friends.request', 'uses' => 'FriendsController@index']);
-Route::post('friends/{id}/accept', [ 'as' => 'friends.accept', 'uses' => 'FriendsController@accept']);
-Route::post('friends/{id}/decline', ['as' => 'friends.decline', 'uses' => 'FriendsController@decline']);
-Route::post('friends/{id}/send_request', ['as' => 'friends.send_request', 'uses' => 'FriendsController@sendRequest']);
+Route::get('friends', ['as' => 'friends.index', 'uses' => 'FriendsController@all']);
 
+$router->group(['middleware' => 'csrf'], function($router)
+{
+    //login
+    Route::post('login',['as'=>'login', 'uses' => 'SessionsController@store']);
+    //register
+    Route::post('register', ['as' =>'register','middleware' => 'csrf', 'uses' => "RegistrationController@store"]);
+    //friends
+    Route::post('friends/{id}/accept', [ 'as' => 'friends.accept', 'uses' => 'FriendsController@accept']);
+    Route::post('friends/{id}/decline', ['as' => 'friends.decline', 'uses' => 'FriendsController@decline']);
+    Route::post('friends/{id}/send_request', ['as' => 'friends.send_request', 'uses' => 'FriendsController@sendRequest']);
+    // posts & comments
+    Route::post('posts/create',['as' => 'posts.create', 'uses' => 'PostsController@create']); //create a posts
+    Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']); // leave a comment on a posts
+
+});
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 Route::get('@{employeeid}',['as'=>'user.profile', 'uses' => 'UsersController@show']);
 
-Route::post('posts/create',['as' => 'posts.create', 'uses' => 'PostsController@create']); //create a posts
-Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']); // leave a comment on a posts
 Route::get('@{employeeid}/posts/{postid}', ['as' => 'users.posts', 'uses' => 'PostsController@show']);
 
 Route::get('settings/account', ['as'=>'settings.account', 'uses' => 'SettingsController@index']);
@@ -177,32 +201,6 @@ Route::get('messages/{conversationid}', function($conversationid){
                     'me' => Auth::user(),
             ]);
         return view('chats.index');
-});
-Route::get('me', function(){
-    $field = Input::get('field');
-    if( $field == 'profile_picture')
-    {
-        $server = new ImageFactory;
-        if( $avatar = Auth::user()->avatar)
-        {
-            $server->output( $avatar, ['w' => 30, 'h' => 40]);
-            return;
-        }
-        $server->output('avatar_small.jpg', ['w' => 30, 'h' => 40]);
-    }
-});
-Route::get('user/{userid}/profile_picture', function($userid){
-        $server = new ImageFactory;
-        if( $user = User::find($userid) )
-        {
-            if( $user->avatar )
-            {
-                $avatar = $user->avatar;
-                $server->output( $avatar, ['w' => 30, 'h' => 40]);
-                return;
-            }
-        }
-        $server->output('avatar_small.jpg', ['w' => 30, 'h' => 40]);
 });
 
  Route::controllers([
