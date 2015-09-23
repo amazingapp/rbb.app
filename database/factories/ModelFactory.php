@@ -19,7 +19,7 @@ $factory->define(Banijya\User::class, function ($faker) {
 $factory->define(Banijya\Post::class, function($faker){
    return [
        'body' => $faker->sentence(),
-       'user_id' => rand(1,50)
+       'user_id' => factory(Banijya\User::class)->create()->id,
    ];
 });
 
