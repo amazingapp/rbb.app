@@ -17,11 +17,12 @@ class CreateImagesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('caption')->nullable();
-            $table->string('path');
-            $table->string('thumbnail_path');
-            $table->string('icon_path');
+            $table->string('path')->default('images/aavatar/dummy/aavatar.png');
+            $table->string('thumbnail_path')->default('images/aavatar/dummy/tn-aavatar.png');
+            $table->string('icon_path')->default('images/aavatar/dummy/ico-aavatar.png');
             $table->timestamps();
-        });    }
+        });
+    }
 
     /**
      * Reverse the migrations.
