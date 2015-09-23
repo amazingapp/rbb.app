@@ -27,4 +27,11 @@ class CommentsRequest extends Request
             'body' => 'required|min:1',
         ];
     }
+
+    public function messages()
+    {
+        return [
+                'body.required' => 'You cannot submit empty comment.',
+            ];
+    }
 }
