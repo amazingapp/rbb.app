@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
     <div class="row">
-        <div class="col-md-7 col-md-offset-3">
+        <div class='col-md-7 col-md-offset-2'>
             @include('layouts.partials.flash')
             @include('layouts.partials.errors')
             <div class="post-container">
@@ -14,7 +14,7 @@
                            <strong>
                                <a href="{{route('user.profile',[$post->owner->employee_id])}}" > {{ $post->owner->name }}</a>
                            </strong>
-                        <span class="text text-muted">{{ $post->created_at->diffForHumans() }}</span>
+                        <a href="{!! route('users.posts',[$post->owner->employee_id, $post->id]) !!}"><span class="text text-muted">{{ $post->created_at->diffForHumans() }}</span></a>
                        </a>
                     </span>
                         <p class="text single-post-body">
@@ -25,6 +25,7 @@
                     @if( $signedIn)
                         <form action="{{route('posts.comments', [$post->id])}}" method="POST" class="form-comment">
                         <input type="hidden" value="{{$post->id}}" name="post_id">
+                        {!! csrf_field() !!}
                         <small class="text-muted comment-helper">Hit Ctrl + Enter to leave a comment</small>
                         <div class="input-group post__comment" style="padding-top: 22px;">
 

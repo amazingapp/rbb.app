@@ -1,6 +1,6 @@
 <div class="media">
   <div class="media-left">
-       <a href="{{route('user.profile', [$user->employee_id])}}" title="{!! $user->name !!}" tabindex="-1" aria-hidden="true">
+       <a href="{{route('user.profile', [$user->employee_id])}}" title="{!! $user->name !!}">
             <img class="aavatar"
                 src="/{!! $user->aavatar->thumbnail_path !!}"
                  alt="{!! $user->name !!}">

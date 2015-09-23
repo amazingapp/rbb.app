@@ -8,7 +8,9 @@
             {!! $comment->body !!}
         </p>
         <small class="time text-muted">
-            {{$comment->created_at->diffForHumans()}}
+            <a href="javascript:" title="{{ $comment->created_at->toDayDateTimeString() }}" data-toggle="tooltip" data-placement="top" >
+                {{$comment->created_at->diffForHumans()}}
+            </a>
         </small>
     </div>
 </article>

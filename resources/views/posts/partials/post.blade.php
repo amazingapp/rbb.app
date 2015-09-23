@@ -7,7 +7,7 @@
                            <strong>
                                <a href="{{route('user.profile',[$post->owner->employee_id])}}" > {{ $post->owner->name }}</a>
                            </strong>
-                        <span class="text text-muted">{{ $post->created_at->diffForHumans() }}</span>
+                        <a href="{!! route('users.posts', [$post->owner->employee_id, $post->id]) !!}"><span class="text text-muted">{{ $post->created_at->diffForHumans() }}</span></a>
                        </a>
                     </span>
         <p class="text">
@@ -15,13 +15,17 @@
         </p>
     </div>
 
-    @if( $signedIn)
+    @if( $signedIn->id === $post->owner->id  || ( $signedIn && $signedIn->isFriendsWith($post->owner) ) )
         <form action="{{route('posts.comments', $post->id)}}#post-{{$post->id}}" method="POST" class="form-comment" >
         <input type="hidden" name="post_id" value="{{$post->id}}">
+        {!! csrf_field() !!}
         @if( $post->commentsCount )
             <p class="text-primary" style="padding: 7px 0px 0px 0px;margin: 0;">
                 <a href="{{route('users.posts',[$post->owner->employee_id, $post->id])}}" > View All Comments </a>
             </p>
+            @foreach ($post->comments as $comment)
+                    @include('posts.partials.comment')
+            @endforeach
         @endif
         <div class="input-group post__comment" style="padding-top: 10px;">
             <span class="input-group-addon" style="border:none;padding:0px;position:relative;">
@@ -30,7 +34,7 @@
             <div class="form-group">
                 <textarea placeholder='Write a comment..'
                     class="form-control comment" arial-describedby="sizing-addon2"
-                    name="body" id="id" cols="2" rows="1"></textarea>
+                    name="body" id="id" cols="2" rows="1">{{ Input::old('body') }}</textarea>
             </div>
         </div>
         </form>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-              @include('layouts.partials.profile')
+              @include('layouts.partials.profile', ['user' => $authUser])
             </div>
             <div class="col-md-6">
                  @include('layouts.partials.flash')
@@ -48,7 +48,7 @@
                  </ul>
                  @if($friendsRequests->hasMorePages())
                      <div class="panel-footer">
-                            {!! $friendsRequests->render() !!}
+                          {!! with(new Banijya\Paginator\FriendsPaginator($friendsRequests) )->render() !!}
                      </div>
                  @endif
                </div>

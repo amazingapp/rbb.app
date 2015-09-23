@@ -6,6 +6,7 @@
         </div>
         <div class="col-md-6">
             @include('layouts.partials.flash')
+            @include('posts.partials.publish-post-form')
             @include('posts.partials.posts', ['feeds' => $posts])
             @include('layouts.partials.simple-pagination', array('paginate' => $posts))
         </div>

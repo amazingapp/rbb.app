@@ -25,48 +25,60 @@
 </head>
 <body>
     <div id="wrapper">
-    	<nav class="navbar navbar-default">
-    		<div class="container">
-    			<div class="navbar-header">
-    				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse-open">
-    					<span class="sr-only">Toggle Navigation</span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    				</button>
-    			</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-ex1-collapse">
+              <div class="container">
+                @if($authUser)
+                <ul class="nav navbar-nav">
+                  <li role="presentation"><a href="/home">Home</a></li>
+              <!--<li role="presentation"><a href="/notifications">Notifications <span class="badge"></span></a></li>-->
+              <!--<li><a href="/conversations">Messages</a></li>-->
+                  <li role="presentation"><a href="/friends">Friends <span class="badge">{{$friendRequests?:""}}</span></a></li>
+                </ul>
+                  @else
+                    <ul class="nav navbar-nav navbar">
+                        <li><a href="/">Rastriya Banijya Bank</a></li>
+                    </ul>
+                  @endif
+                 <ul class="nav navbar-nav navbar-right">
+                                @if (Auth::guest())
+                                    <li><a href="/login">Login</a></li>
+                                @else
+                                    <li class="dropdown menu-right">
+                                        <a href="#" id="user-menu" class="dropdown-toggle" data-toggle="dropdown">
+                                            {{ Auth::user()->name }}&nbsp;
+                                            <span class="caret"></span>
+                                            <img src="/{{$authAavatar->icon_path}}" style="width:32px;height:32px;">
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/settings/account?tab=profile">Edit Profile</a>
+                                            <li><a href="/settings/account?tab=password">Change Password</a></li>
+                                            <li><a href="/settings/account?tab=aavatar">Change Aavatar</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            </ul>
+                @if($authUser)
+                    <form class="navbar-form navbar-right" method="GET" role="search" action="/search">
+                        <div class="form-group">
+                           <input type="text" name="q" value="{{ Input::get('q') }}" class="form-control" placeholder="Search Friends">
+                        </div>
+                    </form>
+                @endif
+          </div>
+        </div>
+    </nav>
 
-    			<div class="collapse navbar-collapse" id="nav-collapse-open">
-    				@if( Auth::check() )
-                        <ul class="nav navbar-nav">
-                            <li><a href="/home">Home</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-left" role="search" action="/search">
-                            <div class="form-group">
-                               <input type="text" name="q" value="{{ Input::get('q') }}" class="form-control" placeholder="Search a Friend">
-                            </div>
-                        </form>
-                    @endif
-                    <ul class="nav navbar-nav pull-right">
-    					@if (Auth::guest())
-    						<li><a href="/login">Login</a></li>
-    					@else
-                            <li><a href="/notifications">Notifications</a></li>
-                            {{-- <li><a href="/conversations">Messages</a></li> --}}
-                            <li><a href="/friends">Friends</a></li>
-    						<li class="dropdown">
-    							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-    							<ul class="dropdown-menu" role="menu">
-                                    <li><a href="/settings/account?tab=profile">Edit Profile</a>
-                                    <li><a href="/settings/account?tab=password">Change Password</a></li>
-                                    <li><a href="/auth/logout">Logout</a></li>
-    							</ul>
-    						</li>
-    					@endif
-    				</ul>
-    			</div>
-    		</div>
-    	</nav>
         <div class="container main">
             @yield('content')
         </div>
@@ -120,6 +132,19 @@
 	<!-- Scripts -->
 <script src="{{elixir('js/all.js')}}"></script>
 <script src="/js/vue.min.js"></script>
+<script>
+
+</script>
+<script>
+    // $(function(){
+    //         $('#user-menu').mouseenter(function(){
+    //                 $('ul[role=menu]').show();
+    //         });
+    //         $('ul[role=menu]').mouseleave(function(){
+    //                      $('ul[role=menu]').hide();
+    //         });
+    // });
+</script>
 @yield('scripts')
 </body>
 </html>
