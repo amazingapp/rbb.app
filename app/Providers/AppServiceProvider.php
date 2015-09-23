@@ -3,6 +3,8 @@
 namespace Banijya\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Banijya\User;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+          User::created(function ($user) {
+            $user->aavatar()->create([]);
+        });
     }
 
     /**
