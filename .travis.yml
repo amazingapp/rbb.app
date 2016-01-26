@@ -7,6 +7,10 @@ php:
   - hhvm
 
 sudo: false
+env:
+  global:
+    - APP_KEY=nR0pSypUXnaeAQSNbfIsVbuaumqFg2j0
+    - APP_DEBUG=true
 
 before_install:
   - composer self-update
