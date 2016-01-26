@@ -20,7 +20,7 @@ class CommentsController extends Controller
      */
     public function store(CommentsRequest $request, $postid)
     {
-        $post = Post::findOrFail($postid);
+        $post = Post::with('owner')->findOrFail($request->post_id);
 
         $user = Auth::user();
 
@@ -28,6 +28,8 @@ class CommentsController extends Controller
 
         $comment->attachTo($user)->attachTo($post)->save();
 
-        return back()->withSuccessMessage('Your comment has been posted.');
+        return redirect()
+                    ->route('users.posts',[$post->owner->employee_id,$post->id] )
+                    ->with('success_message', 'Your comment has been posted.');
     }
 }

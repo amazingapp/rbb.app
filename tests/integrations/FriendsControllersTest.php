@@ -81,4 +81,19 @@ class FriendsController extends MasterTestCase
              ->seePageIs($visit)
              ->see("You have declined friend request from {$firstUser->name}.");
      }
+
+     /** @test */
+     public function should_see_you_and_friends_are_friends_when_you_view_another_users_profile()
+     {
+        $firstUser = $this->createUser();
+
+        $secondUser = $this->createUser();
+
+        $this->be($firstUser);
+
+        $this->makeFriendWith($firstUser, $secondUser);
+
+        $this->visit("/@{$secondUser->employee_id}")
+                ->see("You and {$secondUser->name} are friends.");
+     }
 }

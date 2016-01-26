@@ -3,6 +3,9 @@
 namespace Banijya\Http\Requests;
 
 use Banijya\Http\Requests\Request;
+use Banijya\Post;
+use Illuminate\Contracts\Auth\Guard;
+use Auth;
 
 class CommentsRequest extends Request
 {
@@ -13,7 +16,9 @@ class CommentsRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        $post = Post::with('owner')->findOrFail($this->post_id);
+
+        return Auth::user()->isFriendsWith($post->owner->id);
     }
 
     /**

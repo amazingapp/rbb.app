@@ -27,7 +27,7 @@ class PostsController extends Controller
 
         $post = $user->posts()->findOrFail($postid);
 
-        $comments = $postComments->for($post)->simplePaginate();
+        $comments = $postComments->commentFor($post)->simplePaginate();
 
         return view('posts.show', compact('post', 'user', 'comments'));
     }

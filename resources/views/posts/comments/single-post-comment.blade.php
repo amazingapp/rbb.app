@@ -9,7 +9,8 @@
             <div class="form-group">
                 <textarea placeholder='Write a comment..'
                     class="form-control comment" arial-describedby="sizing-addon2"
-                    name="body" id="id" cols="2" rows="1">{{ Input::old('body') }}</textarea>
+                    name="body" id="body-{{$post->post_id}}" cols="2" rows="1">{{ Input::old('body') }}</textarea>
             </div>
         </div>
+        <button class="form-comment__post-btn btn btn-primary btn-sm">Leave comment</button>
 </form>
