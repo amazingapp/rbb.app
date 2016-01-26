@@ -14,8 +14,8 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('name');
+            $table->integer('user_id')->unsigned()->index();
+            $table->string('name')->nullable();
             $table->string('caption')->nullable();
             $table->string('path')->default('images/aavatar/dummy/aavatar.png');
             $table->string('thumbnail_path')->default('images/aavatar/dummy/tn-aavatar.png');

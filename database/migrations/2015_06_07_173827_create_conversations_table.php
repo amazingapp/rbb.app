@@ -14,7 +14,7 @@ class CreateConversationsTable extends Migration
     {
         Schema::create('conversations', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('created_by')->unsigned(); // the one who creates a conversation shall only pemit to delete it
+            $table->integer('created_by')->unsigned();
             $table->timestamp('last_activity')->nullable();
             $table->timestamps();
         });
