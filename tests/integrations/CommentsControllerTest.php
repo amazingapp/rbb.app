@@ -10,7 +10,12 @@ class CommentsControllerTest extends MasterTestCase
     /** @test */
     public function should_be_redirected_to_the_post_url_once_comment_is_left_on_the_status()
     {
+        $user1 = $this->createUser();
+        $user2 = $this->createUser();
+        $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'Status from user 1']);
+        $post2 = $this->createPosts(['user_id' => $user2->id, 'body' => 'Status from user 2']);
 
+        $this->makeFriendWith($user1, $user2);
     }
 
     /** @test */
