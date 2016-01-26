@@ -9,7 +9,7 @@ use Auth;
 
 trait CanBeActivity {
 
-    protected static function bootRecordsActivity()
+    protected static function bootCanBeActivity()
     {
         $authId = Auth::id();
 
