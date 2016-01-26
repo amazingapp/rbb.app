@@ -5,7 +5,7 @@ namespace Banijya\Http\Controllers;
 use Banijya\Aavatar;
 use Banijya\Http\Controllers\Controller;
 use Banijya\Http\Requests;
-use Banijya\Http\Requests\AavatarRequest;
+use Banijya\Http\Requests\ImageRequest;
 use Banijya\Http\Requests\PasswordRequest;
 use Banijya\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SettingsController extends Controller
 {
-    protected $tabs = ['profile', 'password', 'aavatar'];
+    protected $tabs = ['profile', 'password', 'image'];
 
     /**
      * Settings Tab
@@ -55,12 +55,12 @@ class SettingsController extends Controller
 
     /**
      * Handles updating aavatar
-     * @param  AavatarRequest $request
+     * @param  ImageRequest $request
      * @return Redirect
      */
-    public function updateAavatar(AavatarRequest $request)
+    public function updatePicture(ImageRequest $request)
     {
-        $aavatar = $this->makeAavatarFor(auth()->user(), $request->file('aavatar'));
+        $aavatar = $this->makeAavatarFor(auth()->user(), $request->file('image'));
 
         auth()->user()->aavatar()->save($aavatar);
 
