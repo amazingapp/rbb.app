@@ -13,7 +13,7 @@ class PostComments
      * @param   $post
      * @return  QueryBuilder
      */
-    public function for($post)
+    public function commentFor($post)
     {
         return DB::table('comments')
                         ->select(
