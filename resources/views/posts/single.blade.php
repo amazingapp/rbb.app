@@ -9,7 +9,8 @@
                     <div class="pull-left">
                         <img src="/{{ $post->owner->aavatar->thumbnail_path}}" alt="Placeholder" style="width:50px;height:50px;" />
                     </div>
-                    <div class="media-body post-media-tooltip">
+@include('posts.partials.delete-post')
+    <div class="media-body post-media-tooltip">
                    <span class="text single-post-title">
                            <strong>
                                <a href="{{route('user.profile',[$post->owner->employee_id])}}" > {{ $post->owner->name }}</a>
@@ -51,8 +52,4 @@
             </div>
         </div>
     </div>
-@stop
-
-@section('scripts')
-    @include('posts.partials.comment-script')
 @stop
