@@ -3,8 +3,8 @@
 $factory->define(Banijya\User::class, function ($faker) {
     return [
             'name'	 => $faker->name,
-            'employee_id' => $faker->numberBetween(1091,21999),
-            'mobile' => '984' . $faker->numberBetween(1111111,9999999),
+            'employee_id' => $faker->unique()->numberBetween(1091,21999),
+            'mobile' => '984' . $faker->unique()->numberBetween(1111111,9999999),
             'dob'	=> $faker->dateTimeBetween($startDate = '-40 years', $endDate = '-20 years'),
             'designation' => designations( array_rand( designations(), 1 )),
             'current_branch' => branches( array_rand(branches(), 1) ),

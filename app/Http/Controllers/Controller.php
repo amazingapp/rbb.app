@@ -22,7 +22,7 @@ abstract class Controller extends BaseController
 
     protected function shareAavatar($user)
     {
-        if($user) View::share('authAavatar', Auth::user()->aavatar()->first() );
+        if($user) View::share('authAavatar', $user->image);
     }
 
     public function shareFriendRequest($user)

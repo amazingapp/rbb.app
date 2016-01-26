@@ -10,7 +10,7 @@
                 <div class="panel panel-default">
                  <!-- Default panel contents -->
                  <div class="panel-body">
-                   <strong>We Found {{$users->total()}} results.</strong>
+                   <strong>We Found {{$users->total()}} {{str_plural('result' , $users->total())}}.</strong>
                  </div>
                  <!-- List group -->
                  <ul class="list-group">

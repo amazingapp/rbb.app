@@ -5,7 +5,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FriendsController extends MasterTestCase
 {
-     use DatabaseTransactions;
 
      /** @test */
      public function it_should_send_a_friend_request()

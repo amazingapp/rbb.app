@@ -23,6 +23,8 @@
 <a href="{{route('users.posts',[$post->employee_id, $post->post_id])}}" >{!! $post->comment_count . ' '. str_plural('Comment', $post->comment_count) !!}</a>
 @endif
 </p>
-  @include('posts.comments.single-post-comment')
+  @if( $areFriends or ( $authUser && $authUser->id == $post->user_id) )
+    @include('users.partials.comment')
+  @endif
 </article>
 

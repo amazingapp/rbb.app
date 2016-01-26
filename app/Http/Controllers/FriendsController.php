@@ -89,7 +89,7 @@ class FriendsController extends Controller
     public function all(Guard $auth)
     {
         $user = $auth->user();
-        $friends = $user->allFriends()->simplePaginate(18);
+        $friends = $user->allFriends()->simplePaginate();
 
         return view('friends.all', compact('friends', 'user'));
     }

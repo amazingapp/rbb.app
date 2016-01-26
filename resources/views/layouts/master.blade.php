@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="rbb-app">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
     <title>{{$title or 'Rastriya Banijya Bank - Social App'}}</title>
 	<link href="/css/main.css" rel="stylesheet">
 	<!-- Fonts -->
-	{{--<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>--}}
+	{{-- <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'> --}}
     <!--[if lt IE 8]>
         <link href="/css/ie7-fix.css" rel="stylesheet">
     <![endif]-->
@@ -22,6 +22,8 @@
             zoom: 1;
         }
 </style>
+    <!-- Spark Globals -->
+    @include('scripts.globals')
 </head>
 <body>
     <div id="wrapper">
@@ -61,7 +63,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/settings/account?tab=profile">Edit Profile</a>
                                             <li><a href="/settings/account?tab=password">Change Password</a></li>
-                                            <li><a href="/settings/account?tab=aavatar">Change Aavatar</a></li>
+                                            <li><a href="/settings/account?tab=image">Change Aavatar</a></li>
                                             <li class="divider"></li>
                                             <li><a href="/logout">Logout</a></li>
                                         </ul>
@@ -121,30 +123,19 @@
             </div>
             <div class="footer__bottom">
                 <p class="pull-left">
-                    &copy; @if(date('Y') > $buildYear = 2015) $buildYear - @endif {{date('Y')}}
+                    &copy; @if(date('Y') > $buildYear = 2015) {{$buildYear}} - @endif {{date('Y')}}
                     Rastriya Banijya Bank Limited.
                 </p>
             </div>
         </div>
 	</footer>
 @include('layouts.partials.script')
-@yield('footer')
-	<!-- Scripts -->
+    <!-- Scripts -->
 <script src="{{elixir('js/all.js')}}"></script>
-<script src="/js/vue.min.js"></script>
+@yield('footer')
 <script>
 
 </script>
-<script>
-    // $(function(){
-    //         $('#user-menu').mouseenter(function(){
-    //                 $('ul[role=menu]').show();
-    //         });
-    //         $('ul[role=menu]').mouseleave(function(){
-    //                      $('ul[role=menu]').hide();
-    //         });
-    // });
-</script>
-@yield('scripts')
+@yield('scripts','')
 </body>
 </html>

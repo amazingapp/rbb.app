@@ -1,7 +1,5 @@
 @if($authUser)
-        @if($user->id === $authUser->id)
-
-        @elseif( $authUser->isFriendsWith($user) )
+        @if( $authUser->isFriendsWith($user) )
         <p class="text-success">
             <span class="glyphicon glyphicon-ok-sign"></span>
             You and {{$user->name}} are friends.
@@ -13,7 +11,7 @@
         </form>
         @elseif($authUser->hasFriendRequestPending($user))
                     <span class="label label-default label-friend-request-pending">Your request is pending</span>
-        @else
+        @elseif($user->id !== $authUser->id)
             <form action="{!! route('friends.send_request', $user->id) !!}" method="POST">
                 {!! csrf_field() !!}
                 <button type="submit" class="btn btn-xs btn-primary">Send Request</button>

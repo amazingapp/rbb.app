@@ -9,6 +9,9 @@ use Banijya\Http\Requests\PostsRequest;
 use Banijya\User, Banijya\Post;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Banijya\Services\PostComments;
+
+
 class PostsController extends Controller
 {
 
@@ -18,15 +21,15 @@ class PostsController extends Controller
      * @param  [type] $postid     [description]
      * @return [type]             [description]
      */
-    public function show($employeeId, $postid)
+    public function show($employeeId, $postid , PostComments $postComments)
     {
-        $user = User::where('employee_id', $employeeId)->firstOrFail();
+        $user = User::with('aavatar')->findByEmployeeId($employeeId);
 
-        $post = $user->posts()->with('owner.aavatar')->findOrFail($postid);
+        $post = $user->posts()->findOrFail($postid);
 
-        $comments = $post->comments()->with('owner.aavatar')->latest()->simplePaginate();
+        $comments = $postComments->for($post)->simplePaginate();
 
-        return view('posts.single', compact('post', 'user', 'comments'));
+        return view('posts.show', compact('post', 'user', 'comments'));
     }
 
 
@@ -42,5 +45,16 @@ class PostsController extends Controller
         auth()->user()->posts()->save($post);
 
         return back()->withSuccessMessage('Your Post have been created.');
+    }
+
+    /**
+     * Delete a post
+     * @param  Post   $post
+     * @return  redirect
+     */
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return back()->withSuccessMessage('Post deleted successfully.');
     }
 }

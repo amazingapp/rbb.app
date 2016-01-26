@@ -8,18 +8,26 @@ use Banijya\Http\Requests\CommentsRequest;
 use Banijya\Post, Banijya\Comment;
 use Illuminate\Http\Request;
 use URL, Auth;
+
+
 class CommentsController extends Controller
 {
+    /**
+     * Store a comment in a posts
+     * @param   $request
+     * @param            $postid
+     * @return
+     */
     public function store(CommentsRequest $request, $postid)
     {
         $post = Post::findOrFail($postid);
 
         $user = Auth::user();
 
-        $comment = Comment::create($request->all())
-                        ->attachTo($post)
-                        ->attachTo($user);
+        $comment = new Comment($request->all());
 
-        return redirect(URL::previous() . "#post-{$comment->id}"); //
+        $comment->attachTo($user)->attachTo($post)->save();
+
+        return back()->withSuccessMessage('Your comment has been posted.');
     }
 }

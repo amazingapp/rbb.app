@@ -2,7 +2,7 @@
   <div class="media-left">
        <a href="{{route('user.profile', [$user->employee_id])}}" title="{!! $user->name !!}">
             <img class="aavatar"
-                src="/{!! $user->aavatar->thumbnail_path !!}"
+                src="/{!! $authUser->image->thumbnail_path !!}"
                  alt="{!! $user->name !!}">
           </a>
   </div>

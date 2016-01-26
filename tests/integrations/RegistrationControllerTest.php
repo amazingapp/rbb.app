@@ -4,9 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class RegistrationControllerTest extends TestCase
+class RegistrationControllerTest extends MasterTestCase
 {
-     use DatabaseTransactions;
 
     /** @test */
     public function it_should_register_a_user_and_log_him_and_redirect_to_home()

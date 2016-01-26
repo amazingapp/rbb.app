@@ -6,22 +6,25 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
+        "laravel/framework": "5.2.*",
         "guzzlehttp/guzzle" : "~6.0",
-        "iron-io/iron_mq":"~3.0",
-        "predis/predis" :"~1.0",
+        "predis/predis" :"^1.0",
         "filp/whoops": "~1.0",
         "intervention/image": "2.3.*",
         "intervention/imagecache" : "2.3.*",
         "laracasts/utilities": "~2.0",
-        "barryvdh/laravel-debugbar": "^2.0"
+        "barryvdh/laravel-debugbar": "^2.0",
+        "jenssegers/date": "^3.0",
+        "lucadegasperi/oauth2-server-laravel": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper" : "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
+        "phpunit/phpunit": "~5.0",
+        "phpspec/phpspec": "~2.1",
+        "symfony/dom-crawler": "~3.0",
+        "symfony/css-selector": "~3.0"
     },
     "autoload": {
         "classmap": [

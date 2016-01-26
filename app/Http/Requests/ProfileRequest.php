@@ -27,8 +27,6 @@ class ProfileRequest extends Request
             'name' => 'required',
             'employee_id' => 'required|numeric',
             'mobile' => 'numeric',
-            // 'designation' => '',
-            // 'current_branch' => '',
             'email' => 'required|email|unique:users,email,'. Auth::id(),
             'dob' => 'date_format:Y-m-d',
         ];

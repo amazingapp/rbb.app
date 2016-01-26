@@ -7,7 +7,7 @@
           </div>
           <div class="col-md-6">
               @include('posts.partials.publish-post-form')
-              @include('posts.partials.posts')
+              @include('home.partials.posts')
               @include('layouts.partials.simple-pagination', array('paginate' => $feeds))
           </div>
         </div>

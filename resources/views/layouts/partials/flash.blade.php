@@ -6,7 +6,7 @@
 
 @if(session()->has('info_message'))
     <div class="alert info-success">
-        {{session('success_message')}}
+        {{session('info_message')}}
     </div>
 @endif
 

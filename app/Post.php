@@ -43,7 +43,7 @@ class Post extends Model
     }
 
     /**
-     * Count the Comments of a particular status
+     * Count the Comments of a particular post
      */
     public function getCommentsCountAttribute()
     {
@@ -57,5 +57,14 @@ class Post extends Model
 
       // then return the count directly
       return ($related) ? (int) $related->aggregate : 0;
+    }
+
+    /**
+     * Likes
+     * @return morphMany
+     */
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 }
