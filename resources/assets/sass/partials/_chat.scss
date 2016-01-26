@@ -1,0 +1,33 @@
+.chat {
+    position: relative;
+    height: 200px;
+    margin-top: 10px;
+    overflow: auto;
+
+    .list-group-item{
+
+        border:none;
+
+        .timestamp{
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 1;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-align: center;
+            border-radius: 10px;
+            }
+        }
+}
+
+.chat-body
+{
+    resize: none;
+    border: 1px solid #DFD9D9;
+    overflow: auto;
+    border-radius: 0px;
+    box-shadow: none !important;
+}

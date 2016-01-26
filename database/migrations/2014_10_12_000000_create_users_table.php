@@ -24,8 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('login_count')->default(0);
 			$table->string('email')->unique();
 			$table->string('password', 60);
-			$table->string('avatar')->nullable();
-			$table->json('settings');
+			$table->text('settings')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 		});

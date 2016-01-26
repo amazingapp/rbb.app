@@ -1,0 +1,1 @@
+{!! with(new Banijya\Paginator\SimplePaginator($paginate) )->render() !!}

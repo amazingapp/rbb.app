@@ -1,0 +1,1 @@
+{{$event->user->name}} favorited a status, {{$event->created_at->diffForHumans()}}

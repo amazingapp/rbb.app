@@ -1,0 +1,132 @@
+
+#wrapper{
+  min-height:100%;
+}
+
+.main{
+  overflow:hidden;
+  padding-bottom:30px;
+  padding-top:70px;
+}
+
+.navbar-default {
+  background-color: #00BAE9;
+  border-color: #f3f3f3;
+
+  .navbar-brand {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .navbar-nav > li > a {
+    color: #fff;
+    padding-bottom: 0px;
+    &:hover {
+      color: #2C6C91;
+    }
+  }
+  .navbar-nav > .open
+  {
+    a:focus{
+      background-color: #00BAE9;
+      color: #FFF;
+    }
+  }
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
+
+.dropdown-menu{
+  border-radius: 0;
+  margin: 0;
+  border-top: 3px solid rgba(42, 64, 64, 0.42);
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color: darken(#00BAE9, 10%);
+}
+
+.badge{
+    background-color: #85C6F0;
+
+  &:hover{
+    background-color: #5E8783;
+  }
+}
+
+
+.nav-gravatar {
+  float: left;
+  position: relative;
+  top: -6px;
+  left: -10px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+
+.splash{
+  background-color:white;
+
+}
+
+footer{
+    border-top: 1px solid #eee;
+    min-height: 100px;
+    color: #8e8e8e;
+    background: #fff;
+    padding-top: 65px;
+    letter-spacing: -.2px;
+      ul {
+          list-style: none;
+      }
+   .footer__bottom{
+       border-top: 1px solid #ddd;
+       margin-top: 40px;
+       padding-top: 40px;
+       color: #CCC;
+       font-size: 1.1em;
+   }
+}
+
+form[role=search]
+{
+  float: left;
+  height: 33px;
+  margin: 7px 15px 0 0;
+  font-size: 12px;
+  width: 221px;
+}
+.menu-right{
+  img{
+      float: none;
+      width: 50px;
+      border-radius: 50%;
+      margin-left: 20px;
+      margin-right: 0;
+  }
+}
+
+
+
+.user-nav{
+
+      li{
+          display: block;
+          clear: both;
+          margin-bottom: .7em;
+          padding: .5em 1em;
+      }
+
+    li.active, li:hover{
+      background: #fff;
+      width: 142px;
+    }
+}
+
+.settings{
+  background-color: #fff;
+  padding: 40px;
+  font-size: 1.1em;
+}
