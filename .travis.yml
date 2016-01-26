@@ -6,13 +6,12 @@ php:
   - 7.0
   - hhvm
 
-env:
-  global:
-    - setup=basic
-
 sudo: false
 
+before_install:
+  - composer self-update
+
 install:
-  - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
+  - travis_retry composer install --no-interaction --prefer-source
 
 script: vendor/bin/phpunit
