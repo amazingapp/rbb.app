@@ -38,6 +38,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         ];
 
     /**
+     * Find Employee or Throw Exception
+     * @param  [type] $scope      [description]
+     * @param  [type] $employeeId [description]
+     * @return [type]             [description]
+     */
+    public function scopefindByEmployeeId($query, $employeeId)
+    {
+        return $query->where('employee_id','=', $employeeId)->firstOrFail();
+    }
+
+
+    /**
      * A User can have many posts
      * @return
      */
@@ -64,6 +76,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasOne(Aavatar::class, 'user_id');
     }
+
+    /**
+     * User Have an Image
+     * @return HasOne
+     */
+    public function image()
+    {
+        return $this->aavatar();
+    }
+
     /**
      * Get the activity timeline for the user
      */
@@ -194,14 +216,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                             ->get()->merge(
                                 $this->friendOf()->wherePivot('friend_id', $user->id)->get()
                         );
-        return (bool) $user->count();
+        return !! $user->count();
     }
 
 
-    public function isFriendsWith(User $user)
+    public function isFriendsWith($userId)
     {
-        return (bool) $this->friends()
-                        ->where('id', $user->id)
+        if($userId instanceof User)
+        {
+            $userId = $userId->id;
+        }
+
+        return !! $this->friends()
+                        ->where('id', $userId)
                         ->count();
     }
 
@@ -216,16 +243,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $query->join('friends', function ($join)
         {
             $join->on("users.id", '=', 'friends.user_id')
-            ->orOn('users.id', '=', 'friends.friend_id');
+            ->orOn('users.id', '=', 'friends.friend_id')
+            ->where('friends.accepted','=', 1);
         })
         ->join('images', 'images.user_id','=','users.id')
-        ->where('friends.accepted',1)
         ->where(function($query) use ($user){
             $query
             ->orWhere('friends.user_id', $this->id)
             ->orWhere('friends.friend_id', $this->id);
         })
-        ->where('users.id', '!=', $this->id)
+        ->where('users.id', '<>', $this->id)
+        ->groupBy('users.id')
         ->select(['users.*', 'images.thumbnail_path','images.path as image_path']);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }
