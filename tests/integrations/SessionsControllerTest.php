@@ -4,10 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class SessionsControllerTest extends TestCase
+class SessionsControllerTest extends MasterTestCase
 {
-     use DatabaseTransactions;
-
     /** @test */
     public function it_should_login_a_registered_user()
     {
