@@ -180,7 +180,7 @@ td,
 th {
   padding: 0; }
 
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src\build//css/main-f52cfd2690.css */
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src\build//css/main-1816ac9cbf.css */
 @media print {
   *,
   *:before,
@@ -6095,6 +6095,11 @@ button.close {
 .comment-profile {
   background-color: none;
   vertical-align: none; }
+
+.form-comment__post-btn {
+  position: relative;
+  left: 43px;
+  top: 2px; }
 
 .btn-primary {
   background: #00BAE9;

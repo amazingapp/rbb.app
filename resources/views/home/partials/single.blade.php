@@ -27,6 +27,6 @@
   @include('posts.comments.single-post-comment')
 </article>
 @section('scripts')
-   @include('posts.partials.comment-script')
+   @include('layouts.partials.comment-script')
 @stop
 

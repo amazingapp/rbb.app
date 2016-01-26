@@ -8,18 +8,27 @@ class CommentsControllerTest extends MasterTestCase
 {
 
     /** @test */
-    public function should_be_redirected_to_the_post_url_once_comment_is_left_on_the_status()
+    public function should_be_redirected_to_the_post_url_once_comment_is_left_on_the_home_page()
     {
         $user1 = $this->createUser();
         $user2 = $this->createUser();
+
         $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'Status from user 1']);
         $post2 = $this->createPosts(['user_id' => $user2->id, 'body' => 'Status from user 2']);
 
         $this->makeFriendWith($user1, $user2);
+
+        $this->be($user2);
+
+        $this->visit('/home')
+              ->type('This is a status', "body")
+              ->press('Leave comment')
+              ->seePageIs("/@{$user1->employee_id}/posts/{$post1->id}")
+              ->see('This is a status');
     }
 
     /** @test */
-    public function it_should_be_able_to_comment_on_users_that_are_friends_with()
+    public function should_be_able_to_comment_on_users_post_only_if_are_friends_with()
     {
         //arrange
 

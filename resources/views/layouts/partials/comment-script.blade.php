@@ -6,5 +6,6 @@
                 $(this).closest('form').submit();
             }
         });
+        $('.form-comment__post-btn').hide();
     });
 </script>

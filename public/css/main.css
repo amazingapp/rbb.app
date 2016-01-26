@@ -6096,6 +6096,11 @@ button.close {
   background-color: none;
   vertical-align: none; }
 
+.form-comment__post-btn {
+  position: relative;
+  left: 43px;
+  top: 2px; }
+
 .btn-primary {
   background: #00BAE9;
   border: 1px solid #0091b6; }
