@@ -14,7 +14,6 @@ class CommentsControllerTest extends MasterTestCase
         $user2 = $this->createUser();
 
         $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'Status from user 1']);
-        $post2 = $this->createPosts(['user_id' => $user2->id, 'body' => 'Status from user 2']);
 
         $this->makeFriendWith($user1, $user2);
 
