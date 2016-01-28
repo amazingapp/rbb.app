@@ -27,6 +27,23 @@ class CommentsControllerTest extends MasterTestCase
               ->see('This is a status');
     }
 
+
+    /** @test */
+    public function owner_should_be_able_to_comment_to_his_own_post()
+    {
+        $user1 = $this->createUser();
+
+        $this->be($user1);
+
+        $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'This is a test status.']);
+
+        $this->visit('/home')
+        ->type('This is a comment!','body')
+             ->press('Leave comment')
+             ->seePageIs("/@{$user1->employee_id}/posts/{$post1->id}")
+             ->see("This is a comment!");
+    }
+
     /** @test */
     public function should_be_able_to_comment_on_users_post_only_if_are_friends_with()
     {
