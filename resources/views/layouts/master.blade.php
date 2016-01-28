@@ -43,7 +43,12 @@
                   <li role="presentation"><a href="/home">Home</a></li>
               <!--<li role="presentation"><a href="/notifications">Notifications <span class="badge"></span></a></li>-->
               <!--<li><a href="/conversations">Messages</a></li>-->
-                  <li role="presentation"><a href="/friends">Friends <span class="badge">{{$friendRequests?:""}}</span></a></li>
+                  <li role="presentation"><a href="/friends">Friends</a></li>
+                  @if($friendRequests)
+                    <li role="presentation">
+                        <a href="/friends/requests">Friend Requests <span class="badge">{{$friendRequests}}</span></a>
+                    </li>
+                  @endif
                 </ul>
                   @else
                     <ul class="nav navbar-nav navbar">
@@ -73,7 +78,11 @@
                 @if($authUser)
                     <form class="navbar-form navbar-right" method="GET" role="search" action="/search">
                         <div class="form-group">
-                           <input type="text" name="q" value="{{ Input::get('q') }}" class="form-control" placeholder="Search Friends">
+                           <input type="text"
+                           name="q"
+                           value="{{ Input::get('q') }}"
+                           class="form-control"
+                           placeholder="Search Branch,Employee Id, Name">
                         </div>
                     </form>
                 @endif

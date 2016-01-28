@@ -18,7 +18,7 @@ class CommentsRequest extends Request
     {
         $post = Post::with('owner')->findOrFail($this->post_id);
 
-        return Auth::user()->isFriendsWith($post->owner->id);
+        return $post->user_id == Auth::id() || Auth::user()->isFriendsWith($post->owner->id);
     }
 
     /**

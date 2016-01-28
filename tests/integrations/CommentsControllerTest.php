@@ -14,7 +14,6 @@ class CommentsControllerTest extends MasterTestCase
         $user2 = $this->createUser();
 
         $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'Status from user 1']);
-        $post2 = $this->createPosts(['user_id' => $user2->id, 'body' => 'Status from user 2']);
 
         $this->makeFriendWith($user1, $user2);
 
@@ -25,6 +24,23 @@ class CommentsControllerTest extends MasterTestCase
               ->press('Leave comment')
               ->seePageIs("/@{$user1->employee_id}/posts/{$post1->id}")
               ->see('This is a status');
+    }
+
+
+    /** @test */
+    public function owner_should_be_able_to_comment_to_his_own_post()
+    {
+        $user1 = $this->createUser();
+
+        $this->be($user1);
+
+        $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'This is a test status.']);
+
+        $this->visit('/home')
+        ->type('This is a comment!','body')
+             ->press('Leave comment')
+             ->seePageIs("/@{$user1->employee_id}/posts/{$post1->id}")
+             ->see("This is a comment!");
     }
 
     /** @test */

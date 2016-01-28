@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']);
         Route::delete('posts/{post}', ['as' => 'posts.delete', 'uses' => 'PostsController@delete']);
     });
-    Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
+    Route::get('search', ['middleware' => ['auth'], 'as' => 'search', 'uses' => 'SearchController@index']);
     Route::get('@{employeeid}',['as'=>'user.profile', 'uses' => 'UsersController@show']);
 
     Route::get('@{employeeid}/posts/{postid}', ['as' => 'users.posts', 'uses' => 'PostsController@show']);
