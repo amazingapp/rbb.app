@@ -261,4 +261,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany(Like::class);
     }
+
+    /**
+     * Record Activity for the User
+     * @param   $action
+     * @param   $related
+     * @return  Activity
+     */
+    public function recordActivity( $action , $related )
+    {
+        if( ! method_exists($related, 'recordActivity') )
+        {
+            throw new \Exception('Method recordActivity does not exists.');
+        }
+        return $related->recordActivity($action, $this->id);
+    }
 }
