@@ -13,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Banijya\Events\UserRegistered' => [
-            'Banijya\Listeners\User@register',
-        ],
         'Banijya\Events\CommentWasPosted' => [
             'Banijya\Listeners\User@commentPosted'
+        ],
+        'Banijya\Events\PostWasLiked' => [
+            'Banijya\Listeners\User@likedPost'
         ]
     ];
 
