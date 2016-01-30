@@ -257,6 +257,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         ->select(['users.*', 'images.thumbnail_path','images.path as image_path']);
     }
 
+    /**
+     * Get the likes of the user
+     * @return HasMany
+     */
     public function likes()
     {
         return $this->hasMany(Like::class);

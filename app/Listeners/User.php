@@ -6,10 +6,19 @@ use Banijya\Events\UserRegistered;
 use Banijya\Events\CommentWasPosted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Auth;
+use Illuminate\Contracts\Auth\Guard;
 
 class User
 {
+
+    protected $auth;
+
+
+    function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * After user has registered do what you want to do here!
      * @param  UserRegistered $user
@@ -27,8 +36,22 @@ class User
      */
     public function commentPosted(CommentWasPosted $commentPosted)
     {
-        $user = Auth::user();
+        return $this
+                ->auth
+                ->user()
+                ->recordActivity('left', $commentPosted->comment);
+    }
 
-        return $user->recordActivity('left', $commentPosted->comment);
+    /**
+     * Listen when the post was liked by auth user
+     * @param  PostWasLiked $likedPost
+     * @return Banijya\Like
+     */
+    public function likedPost(PostWasLiked $likedPost)
+    {
+        return $this
+                ->auth
+                ->user()
+                ->recordActivity('liked', $likedPost->post);
     }
 }
