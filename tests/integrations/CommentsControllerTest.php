@@ -19,6 +19,8 @@ class CommentsControllerTest extends MasterTestCase
 
         $this->be($user2);
 
+        $this->expectsEvents(Banijya\Events\CommentWasPosted::class);
+
         $this->visit('/home')
               ->type('This is a status', "body")
               ->press('Leave comment')
