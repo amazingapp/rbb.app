@@ -8,7 +8,7 @@ use Banijya\Http\Requests\CommentsRequest;
 use Banijya\Post, Banijya\Comment;
 use Illuminate\Http\Request;
 use URL, Auth;
-
+use Banijya\Events\CommentWasPosted;
 
 class CommentsController extends Controller
 {
@@ -27,6 +27,8 @@ class CommentsController extends Controller
         $comment = new Comment($request->all());
 
         $comment->attachTo($user)->attachTo($post)->save();
+
+        event(new CommentWasPosted($comment));
 
         return redirect()
                     ->route('users.posts',[$post->owner->employee_id,$post->id] )

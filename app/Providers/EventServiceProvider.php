@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Banijya\Events\UserRegistered' => [
             'Banijya\Listeners\User@register',
         ],
+        'Banijya\Events\CommentWasPosted' => [
+            'Banijya\Listeners\User@commentPosted'
+        ]
     ];
 
     /**

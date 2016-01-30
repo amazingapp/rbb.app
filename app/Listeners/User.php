@@ -3,34 +3,32 @@
 namespace Banijya\Listeners;
 
 use Banijya\Events\UserRegistered;
+use Banijya\Events\CommentWasPosted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 
 class User
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
+     * After user has registered do what you want to do here!
+     * @param  UserRegistered $user
+     * @return
      */
-    public function __construct()
+    public function register(UserRegistered $user)
     {
-        //
+
     }
 
     /**
-     * Handle the event.
-     *
-     * @param  UserRegistered  $event
-     * @return void
+     * Listens when the comment has been left on a status
+     * @param  CommentWasPosted $commentPosted
+     * @return Banijya\Comment
      */
-    public function handle(UserRegistered $event)
+    public function commentPosted(CommentWasPosted $commentPosted)
     {
-        //
-    }
+        $user = Auth::user();
 
-    public function register()
-    {
-
+        return $user->recordActivity('left', $commentPosted->comment);
     }
 }
