@@ -99,29 +99,17 @@
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="rbb.com.np" target="_blank">rbb.com.np</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="ebanking.rbb.com.np" target="_blank">Ebanking</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="#"></a></li>
                     </ul>
                 </div>
             </div>

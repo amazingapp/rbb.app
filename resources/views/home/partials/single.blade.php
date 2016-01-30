@@ -8,8 +8,9 @@
                            <strong>
                                <a href="{{route('user.profile',[$post->employee_id])}}" > {{ $post->user_name}}</a>
                            </strong>
-                        <a href="{!! route('users.posts', [$post->employee_id, $post->post_id]) !!}"><span class="text text-muted">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span></a>
-                       </a>
+                            <a href="{!! route('users.posts', [$post->employee_id, $post->post_id]) !!}">
+                              <span class="text text-muted">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+                            </a>
                     </span>
         <p class="text">
             {!! $post->body !!}
@@ -21,7 +22,8 @@
         <a href="#" >{!! $post->like_count . ' '. str_plural('Like', $post->like_count) !!}</a>
     @endif
      @if( $post->comment_count )
-            <a href="{{route('users.posts',[$post->employee_id, $post->post_id])}}" >  {!! $post->comment_count . ' '. str_plural('Comment', $post->comment_count) !!}</a>
+            <a href="{{route('users.posts',[$post->employee_id, $post->post_id])}}">
+              {!! $post->comment_count . ' '. str_plural('Comment', $post->comment_count) !!}</a>
     @endif
 </p>
   @include('posts.comments.single-post-comment')
