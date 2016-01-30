@@ -10,4 +10,5 @@ rbb-social-app.sublime-workspace
 /public/build/js/*.js.map
 /public/css/*.css.map
 /public/js/*.js.map
+/public/images
 
