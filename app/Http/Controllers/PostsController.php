@@ -57,4 +57,28 @@ class PostsController extends Controller
         $post->delete();
         return back()->withSuccessMessage('Post deleted successfully.');
     }
+
+    /**
+     * User liked a post
+     * @param  Post   $post
+     * @return Redirect
+     */
+    public function like(Post $post)
+    {
+        $alreadyLiked = $post->likesFor($this->auth->user());
+        $message = '';
+
+        if( !! $alreadyLiked->count() )
+        {
+            $message = 'You unliked a post.';
+            $alreadyLiked->delete();
+        }
+        else
+        {
+            $message = 'You liked a post.';
+            $post->likes()->create(['user_id' => $this->auth->user()->id]);
+        }
+
+        return back()->withSuccessMessage($message);
+    }
 }

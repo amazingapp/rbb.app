@@ -1,4 +1,8 @@
 <?php
+Route::macro('after', function ($callback) {
+    $this->events->listen('router.filter:after:newrelic-patch', $callback);
+});
+
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', ['middleware' => 'guest', 'as' => 'splash', 'uses' => 'HomeController@splash']);
@@ -25,17 +29,17 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('posts/{id}/comments',['as' => 'posts.comments', 'uses' => 'CommentsController@store']);
         Route::delete('posts/{post}', ['as' => 'posts.delete', 'uses' => 'PostsController@delete']);
     });
+
     Route::get('search', ['middleware' => ['auth'], 'as' => 'search', 'uses' => 'SearchController@index']);
     Route::get('@{employeeid}',['as'=>'user.profile', 'uses' => 'UsersController@show']);
 
     Route::get('@{employeeid}/posts/{postid}', ['as' => 'users.posts', 'uses' => 'PostsController@show']);
+
     //settings
     Route::get('settings/account', ['as'=>'settings.account', 'uses' => 'SettingsController@index']);
     Route::put('settings/profile', ['as' => 'settings.profile', 'uses' => 'SettingsController@updateProfile']);
     Route::put('settings/change_password', ['as' => 'settings.change_password', 'uses' => 'SettingsController@updatePassword']);
     Route::post('settings/picture', ['as' => 'settings.picture', 'uses' => 'SettingsController@updatePicture']);
-    //messages
-    Route::get('messages', ['uses' => 'MessagesController@index']);
 
 
     /** User Activity */
@@ -52,13 +56,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('posts/{id}/update',['as' => 'posts.update', 'uses' => 'PostsController@update']); //update a posts
     Route::get('posts/{id}/delete',['as'=>'posts.delete', 'uses' => 'PostsController@delete']); //delete a posts
-
-    Route::delete('posts/{postsid}/comments/{commentid}/delete',['as' => 'posts.comments.delete', 'uses' => 'CommentsController@delete']); // delete a comment from a posts
-
-    Route::group(['name' => 'backend'], function(){
-        Route::get('users/register',['as'=>'users.register', 'uses' => 'RegistrationController@register']);
-        Route::post('users/store',['as' => 'users.store', 'uses' => 'RegistrationController@store']);
-    });
+    Route::delete('posts/{postid}/comments/{commentid}/delete',['as' => 'posts.comments.delete', 'uses' => 'CommentsController@delete']); // delete a comment from a posts
+    Route::post('posts/{post}/like',['as' => 'posts.like', 'uses' => 'PostsController@like']); //like a posts
 
      Route::controllers([
         'password' => 'Auth\PasswordController',

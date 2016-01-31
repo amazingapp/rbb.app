@@ -9,7 +9,7 @@ class Like extends Model
 {
     use CanBeActivity;
 
-    protected static $recordsEvents = ['created'];
+    protected static $recordsEvents = [];
 
     protected $fillable = ['user_id', 'likeable_id', 'likeable_type'];
 

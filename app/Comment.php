@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use CanBeActivity;
 
-    protected static $recordsEvents = ['created'];
+    protected static $recordsEvents = [];
 
     protected $fillable = ['user_id', 'body', 'post_id'];
 

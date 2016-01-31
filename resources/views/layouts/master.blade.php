@@ -17,11 +17,6 @@
     <script src="/js/html5.js"></script>
     <script src="/js/respond.js"></script>
 	<![endif]-->
-    <style type="text/css">
-        .row {
-            zoom: 1;
-        }
-</style>
     <!-- Spark Globals -->
     @include('scripts.globals')
 </head>
@@ -68,7 +63,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/settings/account?tab=profile">Edit Profile</a>
                                             <li><a href="/settings/account?tab=password">Change Password</a></li>
-                                            <li><a href="/settings/account?tab=image">Change Aavatar</a></li>
+                                            <li><a href="/settings/account?tab=image">Change Profile Image</a></li>
                                             <li class="divider"></li>
                                             <li><a href="/logout">Logout</a></li>
                                         </ul>
@@ -82,7 +77,7 @@
                            name="q"
                            value="{{ Input::get('q') }}"
                            class="form-control"
-                           placeholder="Search Branch,Employee Id, Name">
+                           placeholder="Search Name, Employee Id, Branch">
                         </div>
                     </form>
                 @endif
@@ -104,29 +99,17 @@
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="rbb.com.np" target="_blank">rbb.com.np</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="ebanking.rbb.com.np" target="_blank">Ebanking</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <ul>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
-                        <li>UseFul links</li>
+                        <li><a href="#"></a></li>
                     </ul>
                 </div>
             </div>

@@ -86,6 +86,11 @@ class FriendsController extends Controller
     }
 
 
+    /**
+     * Display friends for auth user
+     * @param  Guard  $auth
+     * @return view
+     */
     public function all(Guard $auth)
     {
         $user = $auth->user();

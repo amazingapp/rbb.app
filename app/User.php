@@ -257,8 +257,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         ->select(['users.*', 'images.thumbnail_path','images.path as image_path']);
     }
 
+    /**
+     * Get the likes of the user
+     * @return HasMany
+     */
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Record Activity for the User
+     * @param   $action
+     * @param   $related
+     * @return  Activity
+     */
+    public function recordActivity( $action , $related )
+    {
+        if( ! method_exists($related, 'recordActivity') )
+        {
+            throw new \Exception('Method recordActivity does not exists.');
+        }
+        return $related->recordActivity($action, $this->id);
     }
 }

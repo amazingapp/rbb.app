@@ -1,5 +1,5 @@
 <!-- comments section -->
-<form action="{{route('posts.comments', $post->post_id)}}#post-{{$post->post_id}}" method="POST" class="form-comment" >
+<form action="{{route('posts.comments', $post->post_id)}}" method="POST" class="form-comment" >
         <input type="hidden" name="post_id" value="{{$post->post_id}}">
         {!! csrf_field() !!}
         <div class="input-group post__comment" style="padding-top: 10px;">

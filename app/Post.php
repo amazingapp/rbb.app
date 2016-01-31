@@ -67,4 +67,9 @@ class Post extends Model
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function likesFor($user)
+    {
+        return $this->likes()->where('user_id','=',$user->id);
+    }
 }

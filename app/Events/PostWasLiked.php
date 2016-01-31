@@ -5,23 +5,25 @@ namespace Banijya\Events;
 use Banijya\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Banijya\User;
+use Banijya\Post;
 
-
-class UserRegistered extends Event implements ShouldBroadcast
+class PostWasLiked extends Event
 {
     use SerializesModels;
 
-    public $user;
+    /**
+     * @var Post
+     */
+    public $post;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Post $post)
     {
-        $this->user = $user;
+        $this->post = $post;
     }
 
     /**
@@ -31,6 +33,6 @@ class UserRegistered extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['channel-1'];
+        return [];
     }
 }

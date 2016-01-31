@@ -3,34 +3,55 @@
 namespace Banijya\Listeners;
 
 use Banijya\Events\UserRegistered;
+use Banijya\Events\CommentWasPosted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Auth\Guard;
 
 class User
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    protected $auth;
+
+
+    function __construct(Guard $auth)
     {
-        //
+        $this->auth = $auth;
     }
 
     /**
-     * Handle the event.
-     *
-     * @param  UserRegistered  $event
-     * @return void
+     * After user has registered do what you want to do here!
+     * @param  UserRegistered $user
+     * @return
      */
-    public function handle(UserRegistered $event)
+    public function register(UserRegistered $user)
     {
-        //
+
     }
 
-    public function register()
+    /**
+     * Listens when the comment has been left on a status
+     * @param  CommentWasPosted $commentPosted
+     * @return Banijya\Comment
+     */
+    public function commentPosted(CommentWasPosted $commentPosted)
     {
+        return $this
+                ->auth
+                ->user()
+                ->recordActivity('left', $commentPosted->comment);
+    }
 
+    /**
+     * Listen when the post was liked by auth user
+     * @param  PostWasLiked $likedPost
+     * @return Banijya\Like
+     */
+    public function likedPost(PostWasLiked $likedPost)
+    {
+        return $this
+                ->auth
+                ->user()
+                ->recordActivity('liked', $likedPost->post);
     }
 }
