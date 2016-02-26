@@ -16,7 +16,7 @@
                     <hr />
                   <small class="text-muted">
                       Be advised that inorder to run you need to have at least Google Chrome Installed on your machine.
-                      Because of JavaScript version that this app uses it may not support Internet Explorer < 8version.
+                      Because Internet explorer version 10 or less doesn't support latest ECMAScript (JavaScript).
                   </small>
                </div>
             </div>

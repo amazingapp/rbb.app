@@ -10,7 +10,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('login',['as'=>'login', 'uses' => 'SessionsController@create']);
     Route::get('logout',['as'=>'logout', 'uses' => 'SessionsController@destroy']);
     Route::get('register', ['as' =>'register', 'uses' => 'RegistrationController@create']);
-
+    Route::get('terms',['as' => 'terms', 'uses' => 'PagesController@terms']);
     Route::get('friends/requests', ['as' => 'friends.request', 'uses' => 'FriendsController@index']);
     Route::get('friends', ['as' => 'friends.index', 'uses' => 'FriendsController@all']);
     //login

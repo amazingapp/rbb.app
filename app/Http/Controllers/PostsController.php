@@ -54,8 +54,11 @@ class PostsController extends Controller
      */
     public function delete(Post $post)
     {
+        if($post->owner->id != Auth::id() ) return back()->withErrorMessage('Sorry, you cannot delete that message.');
+
         $post->delete();
-        return back()->withSuccessMessage('Post deleted successfully.');
+
+        return back()->withSuccessMessage('Your post has been deleted.');
     }
 
     /**

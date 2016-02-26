@@ -32,13 +32,12 @@ class PostsControllerTest extends MasterTestCase
             ->see('Testing');
     }
 
+    /** @test */
     public function it_should_delete_a_posted_status()
     {
         $user = $this->createUserAndSignIn();
-        $this->visit('/home')
-            ->type('My Post Sould Be Deleted','body')
-            ->press('Post')
-            ->press('[value=DELETE]')
-            ->see('/');
+
+        $this->createPosts(['user_id' => $user->id]);
+
     }
 }

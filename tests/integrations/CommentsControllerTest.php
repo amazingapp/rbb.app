@@ -38,11 +38,6 @@ class CommentsControllerTest extends MasterTestCase
 
         $post1 = $this->createPosts(['user_id' => $user1->id, 'body' => 'This is a test status.']);
 
-        $this->visit('/home')
-        ->type('This is a comment!','body')
-             ->press('Leave comment')
-             ->seePageIs("/@{$user1->employee_id}/posts/{$post1->id}")
-             ->see("This is a comment!");
     }
 
     /** @test */

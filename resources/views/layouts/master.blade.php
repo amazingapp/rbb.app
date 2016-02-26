@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li><a href="ebanking.rbb.com.np" target="_blank">Ebanking</a></li>
+                        <li><a href="//ebanking.rbb.com.np" target="_blank">Ebanking</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
