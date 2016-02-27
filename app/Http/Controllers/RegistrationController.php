@@ -32,8 +32,6 @@ class RegistrationController extends Controller
     {
         $user = User::create($request->all());
 
-        $user->aavatar()->create([]); //just create a empty images so that all the default images are there
-
         Auth::login($user);
 
         return redirect('home')->withSuccessMessage('Thank you for signing up!');
