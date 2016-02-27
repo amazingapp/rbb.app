@@ -14,7 +14,6 @@ class UsersRepository
     public function getFeedsFor(User $user)
     {
         $friendsIds = $this->getFriendsIds($user);
-
         return DB::table('posts')
                     ->select(
                         DB::raw('posts.body, posts.created_at,posts.id AS post_id,
@@ -48,6 +47,10 @@ class UsersRepository
                             ->orOn('users.id','=', 'friends.friend_id');
                       })
                       ->where('friends.accepted', 1)
+                      ->where(function($query) use ($user){
+                          $query->where('friends.user_id', '=', $user->id)
+                          ->orWhere('friends.friend_id','=',$user->id);
+                      })
                       ->where('users.id','<>', $user->id)
                       ->lists('id');
 

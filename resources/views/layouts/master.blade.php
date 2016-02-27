@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-2">
                     <ul>
-                        <li><a href="rbb.com.np" target="_blank">rbb.com.np</a></li>
+                        <li><a href="//rbb.com.np" target="_blank">rbb.com.np</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
